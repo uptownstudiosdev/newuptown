@@ -27,16 +27,23 @@ $loop = new WP_Query( $args );
 						?>
 						<?php if ( has_post_thumbnail() ) { ?>
 						<div class="blog-page-featured-image">
+							<div class="post-format"></div>
 							<figure><a href="<?php the_permalink(); ?>"><img alt="<?php echo $imagealt; ?>" data-sizes="auto" data-src="<?php echo $image; ?>" data-srcset="<?php echo $imageSrcSet; ?>" class="lazyload" /><noscript><img src="<?php echo $image; ?>" alt="<?php echo $imagealt; ?>" /></noscript></a></figure>
 						</div>
 						<span class="avatar alt-avatar"><?php echo get_avatar( get_the_author_meta( 'ID' ), 100 ); ?></span>
 						<?php } ?>
 						<div class="blog-page-title-excerpt">
-							<h3 <?php if ( has_post_thumbnail() ) { ?>class="alt-avatar-title"<?php } ?>><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
+							<?php if ( has_post_thumbnail() ) { ?>
+								<h3 class="alt-avatar-title"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
+							<?php } else { ?>
+								<div class="post-format alt-post-format"></div>
+								<h3 class="alt-post-format-title"></span><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
+							<?php } ?>
 							<p class="author-date">Published on <?php the_date(); ?></p>
-							<p class="author-byline"><?php if ( !has_post_thumbnail() ) { ?><span class="avatar"><?php echo get_avatar( get_the_author_meta( 'ID' ), 100 ); ?></span><?php } ?><span class="byline">By <a href="<?php echo get_author_posts_url( $author_id ); ?>" title=""><?php the_author_meta( 'display_name', $author_id ); ?></a></span>
+							<p class="author-byline"><?php if ( !has_post_thumbnail() ) { ?><span class="avatar"><?php echo get_avatar( get_the_author_meta( 'ID' ), 100 ); ?></span><?php } ?><span class="byline">By <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' )); ?>" title=""><?php the_author_meta( 'display_name', $author_id ); ?></a></span>
 							<?php the_excerpt(); ?></p>
 							<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">Read More &raquo;</a>
+							<div class="bs-post-cats"><i class="fa fa-bullhorn" aria-hidden="true"></i> | <?php the_category(','); ?></div>
 						</div>
 					</div>
 				</article>

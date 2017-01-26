@@ -8,13 +8,11 @@
 
 get_header(); ?>
 <div class="article-wrap" itemscope itemtype="http://schema.org/Article">
-	<?php
-		$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' );
-		$image = $image[0];
-		$hide_featured = get_field('hide_featured_image');
-	?>
+
+<?php	$featured_video = get_field('cause_video_embed_code'); ?>
+
 <meta itemprop="image" itemscope itemtype="https://schema.org/ImageObject" content="<?php echo $image; ?>">
-<?php get_template_part( 'template-parts/blog-title-bar' ); ?>
+<?php get_template_part( 'template-parts/cause-title-bar' ); ?>
 
 <div id="single-post" class="page-full-width max-width-one-thousand no-sidebar" role="main">
 
@@ -24,16 +22,13 @@ get_header(); ?>
 		<?php do_action( 'foundationpress_post_before_entry_content' ); ?>
 		<div class="entry-content">
 
-		<?php
-			if( has_post_thumbnail() ) {
-			if( $hide_featured != 'yes' ) : ?>
-				<div class="single-featured-image">
-					<?php the_post_thumbnail('full'); ?>
-				</div>
-			<?php endif;
-		}	?>
+		<div class="single-featured-image cause-featured-video">
+			<?php echo $featured_video; ?>
+		</div>
 
+		<div class="bs-upvote"><?php GetWtiLikePost(); ?></div>
 		<?php the_content(); ?>
+		<div class="back-to-causes"><a href="<?php bloginfo('url'); ?>/cause-we-care/causes/">&laquo; Back to all Causes</a>
 		</div>
 
 		<?php $posttags = get_the_tags(); if ($posttags) { ?>
@@ -43,8 +38,6 @@ get_header(); ?>
 			} ?>
 		</div>
 		<?php } ?>
-
-		<?php get_template_part( 'template-parts/about-author' ); ?>
 
 		<nav id="nav-single" class="nav-single">
 			<div class="nav-single-inner">

@@ -12,8 +12,10 @@ $break1200: "only screen and (max-width: 75em)";
 $break1024: "only screen and (max-width: 64em)";
 $break951: "only screen and (max-width: 59.4375em)";
 $break951to601: "only screen and (max-width: 59.4375em) and (min-width: 37.5625em)";
+$break800: "only screen and (max-width: 50em)";
 $break767: "only screen and (max-width: 47.9375em)";
 $break640: "only screen and (max-width: 40em)";
+$break639: "only screen and (max-width: 39.9375em)";
 $break600: "only screen and (max-width: 37.5em)";
 $break480: "only screen and (max-width: 30em)";
 $break375: "only screen and (max-width: 23.4375em)";
@@ -51,6 +53,9 @@ $break375: "only screen and (max-width: 23.4375em)";
   4g. Single Blog Post Styles
   4h. 404 Page Styles and Archive Styles
   4i. Social Sharing Styles
+  4j. WP Gallery Styles
+  4k. Thank You Page Styles
+  4l. Cause We Care Challenge Styles
 
 5. PORTFOLIO STYLES
 
@@ -105,6 +110,22 @@ div#preloader img.preloader-logo {
 
 
 /**** 1. GENERAL STYLES ****/
+input::-webkit-input-placeholder {
+  font-size: .75rem;
+  color: #666;
+}
+:-moz-placeholder {
+  font-size: .75rem;
+  color: #666;
+}
+::-moz-placeholder {
+  font-size: .75rem;
+  color: #666;
+}
+:-ms-input-placeholder {
+  font-size: .75rem;
+  color: #666;
+}
 a {
   color: $red;
   font-weight: 700;
@@ -133,6 +154,19 @@ h2 span.sub-title {
   display: block;
   font-size: 65%;
   margin: 10px 0;
+}
+.subtle-image-border img,
+img.subtle-image-border {
+  border: 1px solid $ltgray !important;
+}
+.hide-for-now {
+  display: none;
+  visibility: hidden;
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  speak: none;
+  left: -9999px;
 }
 .the-tags {
   display: inline-block;
@@ -262,7 +296,7 @@ body.modal-active {
   margin-bottom: 30px;
 
   figure {
-    background: #CCC url('http://127.0.0.1/newuptown/wp-content/uploads/2016/07/img-icon.png') no-repeat center center;
+    background: #CCC url('https://uptownstudios.net/wp-content/uploads/2016/07/img-icon.png') no-repeat center center;
     background-size: 50px;
   }
 
@@ -287,6 +321,16 @@ html .margin-bottom-60 {
 }
 html .margin-bottom-6per {
   margin-bottom: 6% !important;
+}
+.max-width-eight-hundred {
+  max-width: 800px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.max-width-nine-seventy {
+  max-width: 970px;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 .max-width-eleven-seventy {
   max-width: 1170px;
@@ -318,6 +362,23 @@ html .margin-bottom-6per {
   ol.row .column:last-child:not(:first-child),
   ol.row .columns:last-child:not(:first-child) {
     float: left;
+  }
+  p, span {
+    font-family: $font-stack;
+    font-weight: 300;
+  }
+  a {
+    font-family: $font-stack;
+  }
+  ul li, ol li {
+    font-family: $font-stack;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 0.625rem;
+  }
+  p + ul,
+  p + ol {
+    margin-top: -0.625rem;
   }
 
 }
@@ -352,6 +413,9 @@ ul.social-media-wrapper.brown li a {
 }
 ul.social-media-wrapper.white li a {
   color: #FFF;
+}
+ul.social-media-wrapper li a {
+  line-height: 30px !important;
 }
 .readable-line-length {
   max-width: 800px;
@@ -401,12 +465,25 @@ ul.social-media-wrapper.white li a {
 #back-top a:focus {
   background: $red;
 }
+.fourohfour-recent-posts ul {
+  margin: 0;
+  list-style: none;
+}
+.fourohfour-recent-posts ul li {
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
 @media #{$break767} {
   .bs-isotope-item {
     width: 50%;
     height: auto;
   }
 }
+// @media #{$break640} {
+//   div[data-vc-full-width="true"] {
+//     left: 1rem !important;
+//   }
+// }
 @media #{$break600} {
   .bs-isotope-item {
   	width: 100% !important;
@@ -422,7 +499,7 @@ ul.social-media-wrapper.white li a {
 
 /**** 2. HEADER STYLES ****/
 header#masthead {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -741,6 +818,16 @@ background: none;
     font-size: 1.5em;
   }
 }
+@media #{$break800} {
+  .top-bar .top-bar-right .menu > li.menu-item-has-children > a:before {
+    line-height: 97px;
+  }
+}
+// @media #{$break639} {
+//   .off-canvas-wrapper-inner {
+//     will-change: transform;
+//   }
+// }
 
 /* 2d. Reverse Header Styles */
 header#masthead.reverse-header {
@@ -754,11 +841,11 @@ header#masthead.reverse-header {
     color: $dark;
   }
   .top-bar .top-bar-left a.custom-logo-link {
-    background: url(http://159.203.243.127/wp-content/uploads/2016/05/logo-color.svg) no-repeat center center !important;
+    background: url(https://uptownstudios.net/wp-content/uploads/2017/01/logo-25th-anniversary-color.svg) no-repeat center center !important;
     background-size: 150px 69px !important;
   }
   .title-bar-title a.custom-logo-link {
-    background: url(http://159.203.243.127/wp-content/uploads/2016/05/logo-color.svg) no-repeat center center !important;
+    background: url(https://uptownstudios.net/wp-content/uploads/2016/05/logo-25th-anniversary-color.svg) no-repeat center center !important;
     background-size: 171px 80px !important;
     display: inline-block;
   }
@@ -790,9 +877,9 @@ body.shrink-logo {
 
 
 /**** 3. HOME PAGE STYLES ****/
-// .admin-bar header#masthead {
-//   top: 32px;
-// }
+.admin-bar header#masthead {
+  top: 32px;
+}
 .home {
 
   div#page-full-width {
@@ -813,14 +900,21 @@ body.shrink-logo {
   }
 
 }
-body:not(.mobile) .home-hero-wrapper {
-  background-position: bottom center !important;
-}
-body.mobile .home-hero-wrapper {
-  background-size: 110% !important;
+// body:not(.mobile) .home-hero-wrapper {
+//   background-position: left bottom !important;
+// }
+body.mobile .home-hero-wrapper,
+body.browsers-mobile .home-hero-wrapper,
+body.browsers-ios .home-hero-wrapper,
+body.browsers-safari .home-hero-wrapper,
+body.browsers-android .home-hero-wrapper,
+body .home-hero-wrapper {
+  background-size: cover !important;
+  background-position: left bottom !important;
+  background-repeat: no-repeat !important;
 }
 .what-we-do-wrapper {
-  background: #e7e7e7 url(http://159.203.243.127/wp-content/uploads/2016/06/what-we-do-bg-tile.svg) repeat fixed !important;
+  background: #e7e7e7 url(https://uptownstudios.net/wp-content/uploads/2016/06/what-we-do-bg-tile.svg) repeat fixed !important;
   background-size: 75px !important;
 
   .vc_column-inner {
@@ -846,9 +940,9 @@ body.mobile .home-hero-wrapper {
   }
   .web-portal, .graphic-portal, .branding-portal, .sm-portal, .video-portal, .print-portal, .hcd-portal, .adwords-portal {
     margin-bottom: 40px;
-    p {
+    p, h2 {
       text-align: center;
-      font: 700 1.5rem/1'museo-sans';
+      font: 700 1.5rem/1'museo-sans' !important;
       text-transform: uppercase;
       margin-top: -10px;
     }
@@ -941,7 +1035,7 @@ body.mobile .home-hero-wrapper {
 }
 
 .testimonials-wrapper {
-  background: url(http://159.203.243.127/wp-content/uploads/2016/05/dots-bg-repeat3.svg) repeat top left;
+  background: url(https://uptownstudios.net/wp-content/uploads/2016/05/dots-bg-repeat3.svg) repeat top left;
   background-size: 35px;
   background-attachment: fixed;
 
@@ -1000,7 +1094,7 @@ body.mobile .home-hero-wrapper {
 
 .waves-section {
   background-color: #a50031 !important;
-  background-image: url('http://159.203.243.127/wp-content/uploads/2016/05/waves-svg-bg3.svg') !important;
+  background-image: url('https://uptownstudios.net/wp-content/uploads/2016/05/waves-svg-bg3.svg') !important;
   background-repeat: repeat-x;
   background-position: -1px bottom;
   background-size: 44px;
@@ -1008,7 +1102,7 @@ body.mobile .home-hero-wrapper {
 }
 
 .ig-wrapper {
-  background: #e7e7e7 url(http://159.203.243.127/wp-content/uploads/2016/06/what-we-do-bg-tile.svg) repeat fixed !important;
+  background: #e7e7e7 url(https://uptownstudios.net/wp-content/uploads/2016/06/what-we-do-bg-tile.svg) repeat fixed !important;
   background-size: 75px !important;
 
   span.ig-caption {
@@ -1037,13 +1131,13 @@ body.mobile .home-hero-wrapper {
       bottom: 0;
       opacity: 1;
   }
+  #instafeed .slick-track {
+    display: table;
+  }
   #instafeed .slick-slide {
     float: none;
     display: table-cell;
     vertical-align: middle;
-  }
-  #instafeed .slick-track {
-    display: table;
   }
   a.instagram-image.slick-slide {
     position: relative;
@@ -1248,7 +1342,7 @@ header#featured-hero {
     //   width: 200px;
     //   height: 200px;
     //   display: block;
-    //   background: url(http://159.203.243.127/wp-content/uploads/2016/06/gray-sun-burst.svg);
+    //   background: url(https://uptownstudios.net/wp-content/uploads/2016/06/gray-sun-burst.svg);
     //   position: absolute;
     //   top: 0;
     //   left: 50%;
@@ -1266,13 +1360,13 @@ header#featured-hero {
       height: 5px;
       display: block;
       position: absolute;
-      background: url(http://159.203.243.127/wp-content/uploads/2016/06/dot-border-light2.svg);
+      background: url(https://uptownstudios.net/wp-content/uploads/2016/06/dot-border-light2.svg);
       left: 50%;
       margin-left: -150px;
       bottom: -1rem;
     }
     h1.entry-title.dark span.entry-title-inner:after {
-      background: url(http://159.203.243.127/wp-content/uploads/2016/06/dot-border2.svg);
+      background: url(https://uptownstudios.net/wp-content/uploads/2016/06/dot-border2.svg);
     }
 }
 
@@ -1528,6 +1622,9 @@ ul.team-social-media-wrapper.red li a:hover {
   .bs-quote-modal-inner br {
     display: none;
   }
+  .bs-quote-modal-inner .gform_wrapper .gform_body {
+    width: 100% !important;
+  }
 }
 .bs-quote-modal-wrapper.show-modal {
   // visibility: visible;
@@ -1571,7 +1668,7 @@ span.fun-title {
   width: 100%;
   height: 44px;
   margin: 0 !important;
-  padding: 70% 20px 30%;
+  padding: 70% 20px 32.5%;
   color: #FFF;
   font-size: 2.25rem !important;
   line-height: 1.1;
@@ -1643,7 +1740,7 @@ span.fun-title {
     padding-bottom: 0 !important;
   }
   .single-tm-image figcaption {
-    padding: 70% 20px 30%;
+    padding: 70% 20px 32.5%;
   }
   .single-tm-outer.showtitle .single-tm-image figcaption {
     opacity: 1;
@@ -1791,15 +1888,42 @@ span.fun-title {
 /* 4c. Clients Page Styles */
 .clients-wrapper {
   max-width: 1100px;
+  margin: 0 auto;
 
   .bs-isotope-item {
     width: 25%;
+  }
+  .clients-inner.row ul {
+    width: 33.3333% !important;
+    margin: 0 -3px 0 0 !important;
+    float: none !important;
+    display: table-cell;
+    vertical-align: top;
+    padding: 16px;
+  }
+  .clients-inner.row ul:nth-child(2) {
+    background: $ltgray;
+  }
+  .clients-inner.row ul li {
+    list-style: none;
+    margin-bottom: 16px;
+    line-height: 1.2;
   }
 
 }
 @media #{$break767} {
   .clients-wrapper .bs-isotope-item {
       width: 33.3333%;
+  }
+}
+@media #{$break640} {
+  .clients-wrapper .clients-inner.row ul {
+    width: 100% !important;
+    display: block;
+    padding: 0;
+  }
+  .clients-wrapper .clients-inner.row ul:nth-child(2) {
+    background: none;
   }
 }
 @media #{$break480} {
@@ -1810,7 +1934,7 @@ span.fun-title {
 
 /* 4d. Contact Us Page and Gravity Forms Styles */
 // .holler-at-us-wrapper {
-//   background: #ecebe9 url(http://159.203.243.127/wp-content/uploads/2016/04/geo-feathers-semi-transparent.svg) fixed;
+//   background: #ecebe9 url(https://uptownstudios.net/wp-content/uploads/2016/04/geo-feathers-semi-transparent.svg) fixed;
 //   background-size: 55px;
 // }
 // .home .holler-at-us-wrapper {
@@ -1848,6 +1972,9 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
     max-width: 100% !important;
     overflow: hidden;
   }
+  .gform_wrapper .gform_body {
+    width: 100% !important;
+  }
   .gform_body {
     padding: 0;
     border: 4px solid $yellow;
@@ -1860,7 +1987,7 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
     min-height: 30px;
   }
   .gform_wrapper .gform_heading h3.gform_title {
-    margin: 0;
+    margin: 0 0 0.625rem 0;
     line-height: 1.9rem;
     font-size: 1.75rem !important;
   }
@@ -1899,6 +2026,17 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
   .gform_wrapper li.gfield.field_description_below+li.gsection {
     margin-top: 0 !important;
   }
+  .gform_wrapper .top_label input.large.ginput_amount {
+    padding-left: 20px !important;
+  }
+  .gform_wrapper .top_label .ginput_container.ginput_container_product_price:after {
+    content: '$';
+    position: absolute;
+    top: 51%;
+    left: 17px;
+    transform: translateY(-50%);
+    font-size: .875rem;
+  }
   li.gsection {
     background: $yellow;
   }
@@ -1921,6 +2059,10 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
     font-size: 75%;
     opacity: .65;
   }
+  .gform_wrapper .field_description_below .gfield_description {
+    padding-top: 0;
+    font-size: .725rem;
+  }
   textarea {
     padding: 15px 10px !important;
   }
@@ -1932,7 +2074,7 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
   }
   li.bs-textarea .ginput_container_textarea:after {
     content: '';
-    background: url(http://159.203.243.127/wp-content/uploads/2016/05/dots-bg-repeat3.svg);
+    background: url(https://uptownstudios.net/wp-content/uploads/2016/05/dots-bg-repeat3.svg);
     background-size: 16px;
     width: 100%;
     height: 28px;
@@ -1976,6 +2118,9 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
   .gform_wrapper .gfield_checkbox li label,
   .gform_wrapper .gfield_radio li label {
     line-height: 1.2 !important;
+  }
+  .gform_wrapper .gfield_required {
+    color: red !important;
   }
   .nofloatLabel label.gfield_label {
     position: relative;
@@ -2050,6 +2195,89 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
   }
 
 }
+.tml-login, .tml-register, .tml-lostpassword {
+  max-width: 500px;
+  margin: 0 auto;
+}
+.tml-form-body {
+  padding: 0;
+  border: 4px solid $yellow;
+  border-bottom: 0;
+  box-sizing: border-box;
+
+  input[type="text"],
+  input[type="password"] {
+    width: 100% !important;
+    height: 56px;
+    line-height: 50px;
+    border: 0;
+    background: #E6E6E6 !important;
+    background: rgba(230,230,230,.8) !important;
+    box-shadow: none;
+    margin: 0;
+    padding: 0 10px !important;
+  }
+  input:-webkit-autofill {
+    background-color: rgba(230,230,230,.8) !important;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+  }
+  li.floatLabel {
+    padding: 6px 10px;
+    border-top: 0 !important;
+    border-bottom: 4px solid $yellow;
+    margin: 0;
+  }
+  li.floatLabel {
+    position: relative;
+    padding-right: 10px !important;
+  }
+  li.floatLabel label {
+    line-height: 1.2 !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    position: absolute;
+    margin: 0 !important;
+    left: 18px;
+    top: 8px;
+    text-transform: capitalize;
+    font-family: 'museo-sans';
+    will-change: transition;
+    @include transition(all);
+  }
+  li.floatLabel label[data-attr="active"] {
+    bottom: 69%;
+    font-size: 75% !important;
+    opacity: .65;
+  }
+
+}
+.tml-form-footer {
+
+  input[type="submit"] {
+    background: $red;
+    color: #FFF;
+    font-family: 'museo-sans';
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 0;
+    padding: 0.85em 1em;
+    @include transition(background);
+  }
+  input[type="submit"]:hover,
+  input[type="submit"]:focus {
+    background: $dark;
+  }
+
+}
+ul.tml-action-links {
+  list-style: none;
+  margin: 1rem 0 0 0;
+}
+
+
 .home .entry-content .gform_wrapper {
   margin: 0 auto !important;
   max-width: 800px !important;
@@ -2066,6 +2294,7 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
 
   .list-style-events-wrapper {
     margin-left: -30px;
+    min-height: 190px;
   }
   .list-style-events-wrapper h2 {
     display: none;
@@ -2217,7 +2446,7 @@ a.page-numbers:focus {
 
 /* 4e-a. Single Events Styles */
 .single-event header#featured-hero.single-featured-hero h1.entry-title p.entry-meta {
-  text-transform: initial;
+  text-transform: none;
 }
 .event-wrap {
   display: table;
@@ -2302,7 +2531,12 @@ a.page-numbers:focus {
 }
 
 /* 4f. Blog Page Styles and Archive Styles */
+.wp-video {
+  display: block;
+  margin: 0 auto;
+}
 .page-template-page-blog,
+.page-template-page-causes,
 .archive,
 .tag {
 
@@ -2317,7 +2551,8 @@ a.page-numbers:focus {
     margin-left: -30px;
   }
   article.post,
-  article.portfolio {
+  article.portfolio,
+  article.cause {
 
     p.author-date {
       text-transform: uppercase;
@@ -2360,6 +2595,59 @@ a.page-numbers:focus {
       border: 3px solid #f1f1f1;
       box-shadow: 0 -2px 4px rgba(0,0,0,.5)
     }
+    div.post-format {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      line-height: 30px;
+      right: 1px;
+      top: 1px;
+      z-index: 10;
+      background: $red;
+      opacity: .35;
+      @include transition(opacity);
+    }
+    &:hover div.post-format {
+      opacity: 1;
+    }
+    div.post-format:before {
+      content: '\f040';
+      font-family: fontawesome;
+      color: white;
+    }
+    &.format-video div.post-format:before {
+      content: '\f008';
+    }
+    &.format-gallery div.post-format:before,
+    &.format-image div.post-format:before {
+      content: '\f03e';
+    }
+    &.format-link div.post-format:before {
+      content: '\f0c1';
+    }
+    &.format-quote div.post-format:before {
+      content: '\f10d';
+    }
+    &.format-audio div.post-format:before {
+      content: '\f001';
+    }
+    &.format-aside div.post-format:before {
+      content: '\f27a';
+    }
+    &.format-status div.post-format:before {
+      content: '\f27a';
+    }
+    &.format-chat div.post-format:before {
+      content: '\f1d7';
+    }
+    div.post-format.alt-post-format {
+      right: 0;
+      top: 0;
+    }
+    h3.alt-post-format-title {
+      padding-right: 20px;
+    }
     p.author-byline span.byline {
       display: table-cell;
       vertical-align: middle;
@@ -2388,6 +2676,26 @@ a.page-numbers:focus {
           @include transition(all);
         }
 
+    }
+    .bs-post-cats {
+      padding: 8px 15px;
+      position: relative;
+      bottom: -15px;
+      left: -15px;
+      width: calc(100% + 30px);
+      background: $red;
+      color: #FFF;
+    }
+    .bs-post-cats * {
+      color: #FFF;
+    }
+    .bs-post-cats a {
+      font-size: .875rem;
+      line-height: 1.125rem;
+      padding-left: 0.3125rem;
+    }
+    .bs-post-cats a:first-of-type {
+      padding-left: 0;
     }
 
   }
@@ -2488,6 +2796,7 @@ header#featured-hero.single-featured-hero {
       letter-spacing: 0;
       margin-top: 24px;
       margin-bottom: 0;
+      text-transform: none;
     }
 
   }
@@ -2560,6 +2869,10 @@ nav#nav-single {
     font-weight: 400 !important;
     font-size: .95rem;
     font-style: italic;
+  }
+  .author-image img {
+    border-radius: 100%;
+    margin-top: -20px;
   }
 }
 
@@ -2641,6 +2954,140 @@ div#page.archives-wrapper {
   figure img {
     width: 100%;
     height: auto;
+    border: 1px solid $ltgray;
+  }
+
+}
+
+/* 4k. Thank You Page Styles */
+.thank-you-page-content {
+
+  h2.widgettitle {
+    display: none;
+  }
+  .menu li {
+    display: block;
+  }
+  .menu li a {
+    padding: 0;
+    line-height: 1.6;
+  }
+  .widget.widget_recent_entries ul {
+    list-style: none;
+    margin-left: 0;
+  }
+
+}
+
+/* 4l. Cause We Care Challenge Styles */
+.cause-we-care-logo img,
+.cause-we-care-logo figure {
+  width: 100%;
+  height: auto;
+}
+.watch-action {
+  float: none;
+  display: flex;
+}
+span.unlc {
+  display: none !important;
+}
+.action-like a, .action-unlike a {
+  float: none;
+  line-height: 1.875rem;
+  height: 1.875rem;
+  display: inline-block;
+}
+.action-unlike a {
+  padding-left: .5rem !important;
+}
+.action-like a img, .action-unlike a img {
+  float: none;
+  display: none;
+}
+.action-like a:before, .action-unlike a:before {
+  content: '\f062';
+  font-family: fontawesome;
+  width: 1.875rem;
+  height: 1.875rem;
+  line-height: 1.875rem;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 1.125rem;
+  background: $red;
+  border-radius: 100%;
+  color: #FFF;
+  @include transition(background);
+}
+.action-unlike a:before {
+  content: '\f0e2';
+  font-size: 1rem;
+}
+.action-like a.jlk:hover:before,
+.action-like a.jlk:focus:before,
+.action-like a.jlk.active:before,
+.action-unlike a.jlk:hover:before,
+.action-unlike a.jlk:focus:before,
+.action-unlike a.jlk.active:before {
+  background: #9ad49a !important;
+}
+.action-like .lc, .action-unlike .unlc {
+  float: none;
+  width: auto;
+  height: 1.875rem;
+  line-height: 2rem;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1.25rem;
+  font-family: 'museo-sans';
+  font-weight: 700;
+}
+.status.align-left {
+  line-height: 2rem;
+  font-size: 1rem;
+  font-family: 'museo-sans';
+  font-weight: 700;
+  padding-left: 1rem;
+}
+.status.align-left p,
+.status.align-left a {
+  line-height: 2rem;
+  font-size: 1rem;
+  font-family: 'museo-sans';
+  font-weight: 700;
+}
+.cause-page-featured-video .flex-video {
+  margin-bottom: 0;
+}
+.page-template-page-causes article.cause .bs-post-cats a.wti-login {
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: #9ad49a !important;
+}
+.bs-upvote {
+  padding-top: 5px;
+  padding-bottom: 8px !important;
+  margin-bottom: 10px;
+  border: 1px solid $red;
+  border-left: 0;
+  border-right: 0;
+
+  .watch-action {
+    float: none !important;
+    display: flex;
+    justify-content: center;
+  }
+  a.jlk {
+    margin-left: 2px;
+  }
+  .lbg-style6 .lc,
+  .lbg-style6-active .lc {
+    color: $red;
+  }
+  .status.align-left {
+    color: $red;
+    line-height: 36px;
   }
 
 }
@@ -3150,6 +3597,11 @@ span.title-bar-meta {
     vertical-align: top;
     width: 50%;
     padding-right: 20px;
+
+    .portfolio-gallery {
+      margin: 0;
+    }
+
   }
   .portfolio-main-image.alignmiddle {
     vertical-align: middle;
@@ -3196,6 +3648,7 @@ span.title-bar-meta {
     .gallery figure.gallery-item img {
       width: 100%;
       height: auto;
+      border: 1px solid $ltgray;
     }
     .gallery figcaption {
       display: none !important;
@@ -3239,7 +3692,7 @@ span.title-bar-meta {
 //     width: 100%;
 //     height: 4px;
 //     display: block;
-//     background: url(http://159.203.243.127/wp-content/uploads/2016/06/dot-border-red.svg);
+//     background: url(https://uptownstudios.net/wp-content/uploads/2016/06/dot-border-red.svg);
 //     top: -2px;
 //     position: relative;
 // }
@@ -3299,8 +3752,11 @@ span.title-bar-meta {
     font-weight: 900;
     font-size: 1em;
   }
+  ul.social-media-wrapper li {
+    margin-right: 0 !important;
+  }
   ul.social-media-wrapper li a {
-    line-height: 24px !important;
+    line-height: 30px !important;
   }
 }
 @media only screen and (max-width: 101.875rem) {
@@ -3338,7 +3794,7 @@ span.title-bar-meta {
 
 
 /**** 7. MOBILE & KEYBOARD INPUT STYLES ****/
-.mobile {
+.mobile, .browsers-mobile {
 
   .what-we-do-wrapper {
     background-attachment: scroll !important;
@@ -3360,8 +3816,15 @@ span.title-bar-meta {
 
 }
 
-body[data-whatinput="keyboard"], .no-js {
+body[data-whatinput="keyboard"] {
 
+  button:focus {
+    box-shadow: 0 0 4px 4px rgb(84, 115, 245) !important;
+  }
+
+}
+
+ .no-js {
   .wpb_animate_when_almost_visible {
     opacity: 1 !important;
     animation: none !important;
@@ -3369,8 +3832,7 @@ body[data-whatinput="keyboard"], .no-js {
   button:focus {
     box-shadow: 0 0 4px 4px rgb(84, 115, 245) !important;
   }
-
-}
+ }
 
 
 /**** 8. IE ONLY STYLES ****/
@@ -3380,17 +3842,17 @@ body[data-whatinput="keyboard"], .no-js {
     background-attachment: scroll !important;
   }
   .what-we-do-wrapper, .ig-wrapper {
-    background-image: url('http://159.203.243.127/wp-content/uploads/2016/08/what-we-do-bg-tile-01.png') !important;
+    background-image: url('https://uptownstudios.net/wp-content/uploads/2016/08/what-we-do-bg-tile-01.png') !important;
     background-size: 75px !important;
     background-attachment: scroll !important;
   }
   .testimonials-wrapper {
-    background-image: url('http://159.203.243.127/wp-content/uploads/2016/08/dots-bg-repeat-semi-transparent-2x.png');
+    background-image: url('https://uptownstudios.net/wp-content/uploads/2016/08/dots-bg-repeat-semi-transparent-2x.png');
     background-size: 35px;
     background-attachment: scroll !important;
   }
   .waves-section {
-    background-image: url('http://159.203.243.127/wp-content/uploads/2016/08/waves-svg-bg3.png') !important;
+    background-image: url('https://uptownstudios.net/wp-content/uploads/2016/08/waves-svg-bg3.png') !important;
     background-size: 44px;
   }
   .meet-the-team-svg {
@@ -3408,16 +3870,16 @@ body[data-whatinput="keyboard"], .no-js {
   }
   .browsers-other-11 #featured-hero,
   .browsers-windows-other #featured-hero {
-    background-image: url('http://159.203.243.127/wp-content/uploads/2016/08/tie-fighter-wing02.png') !important;
+    background-image: url('https://uptownstudios.net/wp-content/uploads/2016/08/tie-fighter-wing02.png') !important;
     background-color: #a8c9e9 !important;
     background-size: 290px !important;
   }
   header#featured-hero h1.entry-title.dark span.entry-title-inner:after {
-    background: url(http://159.203.243.127/wp-content/uploads/2016/08/dot-border2.png);
+    background: url(https://uptownstudios.net/wp-content/uploads/2016/08/dot-border2.png);
     background-size: 20px;
   }
   header#featured-hero h1.entry-title span.entry-title-inner:after {
-    background: url(http://159.203.243.127/wp-content/uploads/2016/08/dot-border-light2.png);
+    background: url(https://uptownstudios.net/wp-content/uploads/2016/08/dot-border-light2.png);
     background-size: 20px;
   }
 }
@@ -3428,21 +3890,32 @@ body[data-whatinput="keyboard"], .no-js {
     background-attachment: scroll !important;
   }
   .what-we-do-wrapper, .ig-wrapper {
-    background-image: url('http://159.203.243.127/wp-content/uploads/2016/08/what-we-do-bg-tile-01.png') !important;
+    background-image: url('https://uptownstudios.net/wp-content/uploads/2016/08/what-we-do-bg-tile-01.png') !important;
     background-size: 75px !important;
     background-attachment: scroll !important;
   }
   .testimonials-wrapper {
-    background-image: url('http://159.203.243.127/wp-content/uploads/2016/08/dots-bg-repeat-semi-transparent-2x.png');
+    background-image: url('https://uptownstudios.net/wp-content/uploads/2016/08/dots-bg-repeat-semi-transparent-2x.png');
     background-size: 35px;
     background-attachment: scroll !important;
   }
   .waves-section {
-    background-image: url('http://159.203.243.127/wp-content/uploads/2016/08/waves-svg-bg3.png') !important;
+    background-image: url('https://uptownstudios.net/wp-content/uploads/2016/08/waves-svg-bg3.png') !important;
     background-size: 44px;
   }
 }
 
+
+/**** 9. FIREFOX ONLY CSS ****/
+@-moz-document url-prefix() {
+  .ig-wrapper #instafeed .slick-slide {
+    float: left !important;
+    display: block !important;
+  }
+  .ig-wrapper #instafeed .slick-track {
+    display: block !important;
+  }
+}
 
 /**** 00. No JavaScript Styles ****/
 .no-js {

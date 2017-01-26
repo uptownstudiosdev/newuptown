@@ -27,7 +27,7 @@
 			</footer>
 		</div>
 		<div id="back-top">
-  		<a href="#" title="Back to top"><i class="fa fa-chevron-up"></i></a>
+  		<a href="#" title="Back to top" aria-label="Back To Top"><i class="fa fa-chevron-up"></i></a>
 		</div>
 
 		<?php do_action( 'foundationpress_layout_end' ); ?>
@@ -56,7 +56,7 @@
 
 	jQuery(document).ready(function($) {
 		$heightOnLoad = $('.home-hero-wrapper.vc_row.vc_row-o-full-height').height();
-		console.log($heightOnLoad);
+		// console.log($heightOnLoad);
 		$(window).resize(function() {
 			$('body.mobile .home-hero-wrapper.vc_row.vc_row-o-full-height').css({'min-height':$heightOnLoad});
 		});
@@ -68,6 +68,18 @@
 
 	jQuery(document).ready(function($) {
 		$('#preloader img').delay(10).show();
+		$('.home #video-iframe-1').delay(500).load(function() {
+
+			// Site Preloader
+			$('#preloader').addClass('loaded')
+			// $('#preloader img').fadeIn('fast');
+			// $('#preloader .spinner').addClass('loaded');
+			// $('#preloader img').addClass('loaded');
+			$('#preloader.loaded').delay(250).slideUp(1000, function() {
+				$(this).remove();
+			});
+		});
+
 		$(window).imagesLoaded(function() {
 
 			// Site Preloader
@@ -84,7 +96,7 @@
 			var portrighthalf = jQuery('.portfolio-description-inner').height();
 			var eventlefthalf = jQuery('.event-main-image').height();
 			var eventrighthalf = jQuery('.event-description-inner').height();
-			if(portlefthalf > portrighthalf) {
+			if((portlefthalf > portrighthalf) && (portlefthalf > 800)) {
 				$('.portfolio-main-image').addClass('alignmiddle');
 				$('.portfolio-description').addClass('alignmiddle');
 			}
@@ -120,10 +132,12 @@
 					var $this = $(this);
 					$this.focus(function(){
 						$this.closest('li.gfield').find('label').attr("data-attr","active");
+						$this.closest('li.floatLabel').find('label').attr("data-attr","active");
 					});
 					$this.blur(function(){
 						if($this.val() === '' || $this.val() === 'blank'){
 							$this.closest('li.gfield').find('label').attr("data-attr","");
+							$this.closest('li.floatLabel').find('label').attr("data-attr","");
 						}
 					});
 			});
@@ -218,9 +232,6 @@
 		element: document.getElementById('init-header-change'),
 		handler: function(direction) {
 			jQuery('#masthead').toggleClass('reverse-header');
-			jQuery('#masthead.reverse-header .top-bar .top-bar-left a.custom-logo-link img').attr('src','<?php bloginfo('url'); ?>/wp-content/uploads/2016/05/logo-color.svg');
-			jQuery('#masthead .top-bar .top-bar-left a.custom-logo-link img').attr('src','<?php bloginfo('url'); ?>/wp-content/uploads/2016/04/logo.svg');
-
 		},
 		offset: shrinkOn
 	});
@@ -374,6 +385,22 @@
 
   })(jQuery);
 
+</script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	var $unlike = $('div.action-unlike');
+	var $likeParent = $('div.watch-position');
+	$unlike.detach();
+	$(document).on('click', 'body.logged-in a[data-task="like"]', function(e) {
+		e.preventDefault();
+		$unlike.appendTo($likeParent);
+	});
+	$(document).on('click', 'a[data-task="unlike"]', function(e) {
+		e.preventDefault();
+		$unlike.detach();
+	});
+});
 </script>
 
 <?php do_action( 'foundationpress_before_closing_body' ); ?>

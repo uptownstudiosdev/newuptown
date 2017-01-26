@@ -4,6 +4,8 @@ Template Name: Left Sidebar
 */
 get_header(); ?>
 
+<?php $conversion_code = get_field('tracking_code'); if( $conversion_code ) { echo $conversion_code; } ?>
+
 <?php get_template_part( 'template-parts/featured-image' ); ?>
 
 <div id="page-sidebar-left" role="main">

@@ -61,7 +61,7 @@ require_once( 'library/bs-customizer-additions.php' );
 
 add_filter('pre_get_posts', 'query_post_type');
 function query_post_type($query) {
-  if ( is_category() || is_tag() && empty( $query->query_vars['suppress_filters'] ) ) {
+  if ( is_archive() && ( is_category() || is_tag() ) && empty( $query->query_vars['suppress_filters'] ) ) {
     $post_type = get_query_var('post_type');
 	    if($post_type)
 	      $post_type = $post_type;
@@ -94,3 +94,9 @@ add_filter( 'script_loader_tag', function ( $tag, $handle ) {
 
     return str_replace( ' src', ' async src', $tag );
 }, 10, 2 );
+
+function add_grav_forms(){
+    $role = get_role('editor');
+    $role->add_cap('gform_full_access');
+}
+add_action('admin_init','add_grav_forms');

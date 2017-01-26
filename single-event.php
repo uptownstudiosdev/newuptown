@@ -18,10 +18,19 @@ get_header(); ?>
 		<?php do_action( 'foundationpress_post_before_entry_content' ); ?>
 		<div class="entry-content event-wrap">
 
+		<?php $altimage = get_field('alternate_event_image');
+		if ( empty($altimage) ) : ?>
+
 		<?php if ( has_post_thumbnail() ) { ?>
 		<div class="event-main-image">
 			<?php the_post_thumbnail(); ?>
-		</div><?php }	?>
+		</div>
+		<?php }	?>
+		<?php else: ?>
+			<div class="event-main-image">
+				<img src="<?php echo $altimage['url']; ?>" alt="<?php echo $altimage['alt']; ?>" />
+			</div>
+		<?php endif; ?>
 		<div class="event-description">
 			<div class="event-description-inner">
 				<?php the_content(); ?>
