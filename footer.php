@@ -247,7 +247,7 @@
 
 	jQuery(function($) {
 		// Scroll to hash on click
-	  $('a[href*="#"]:not([href="#"])').click(function() {
+	  $('body:not(.woocommerce) a[href*="#"]:not([href="#"])').click(function() {
 	    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
 	      var target = $(this.hash);
 				console.log(target);
@@ -311,7 +311,7 @@
 
 	// Scroll to service on page load after all images are loaded
   jQuery(function($){
-  $('a.go-to-service, .go-to-service a').on('click', scroller.hashLinkClicked);
+  $('body:not(.woocommerce) a.go-to-service, body:not(.woocommerce) .go-to-service a').on('click', scroller.hashLinkClicked);
     scroller.loaded();
   });
 

@@ -179,3 +179,70 @@ ob_start(); ?>
 <?php $bs_social_variable = ob_get_clean();
 return $bs_social_variable;
 }
+
+
+// Add custom tab for related products and move all related products into it
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20);
+function woo_custom_product_tab( $tabs ) {
+
+    $custom_tab = array(
+      		'custom_tab' =>  array(
+    							'title' => __('Related Products','woocommerce'),
+    							'priority' => 50,
+    							'callback' => 'woo_custom_product_tab_content'
+    						)
+    				);
+
+    return array_merge( $custom_tab, $tabs );
+}
+function woo_custom_product_tab_content() {
+	woocommerce_related_products();
+}
+add_filter( 'woocommerce_product_tabs', 'woo_custom_product_tab' );
+
+
+// Custom WooCommerce Loop Start and End
+function woocommerce_product_loop_start() {
+	echo '<div class="clear"></div><div class="lazy-isotop-wrapper"><div class="products bs-isotope lazy-isotope">';
+}
+
+function woocommerce_product_loop_end() {
+	echo '</div></div>';
+}
+
+
+// Wrapper around image in WooCommerce loop
+remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
+add_action   ( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
+
+if ( ! function_exists( 'woocommerce_template_loop_product_thumbnail' ) ) {
+	function woocommerce_template_loop_product_thumbnail() {
+		echo woocommerce_get_product_thumbnail();
+	}
+}
+
+if ( ! function_exists( 'woocommerce_get_product_thumbnail' ) ) {
+
+	function woocommerce_get_product_thumbnail( $size = 'shop_catalog', $placeholder_width = 0, $placeholder_height = 0  ) {
+		global $post, $woocommerce;
+		if ( ! $placeholder_width )
+			$placeholder_width = wc_get_image_size( 'shop_catalog_image_width' );
+		if ( ! $placeholder_height )
+			$placeholder_height = wc_get_image_size( 'shop_catalog_image_height' );
+
+			$output = '<div class="product-image-wrapper">';
+			if ( has_post_thumbnail() ) {
+
+				$output .= get_the_post_thumbnail( $post->ID, $size );
+
+			} else {
+
+				$output .= '<img src="'. woocommerce_placeholder_img_src() .'" alt="Placeholder" width="' . $placeholder_width . '" height="' . $placeholder_height . '" />';
+
+			}
+
+			$output .= '</div>';
+
+			return $output;
+	}
+}
